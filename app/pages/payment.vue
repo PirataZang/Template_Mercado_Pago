@@ -83,14 +83,17 @@ const processPayment = async () => {
                 unit_price: paymentData.amount,
                 currency_id: 'BRL',
             },
+            {
+                title: 'Teste dois prod',
+                quantity: 1,
+                unit_price: 1,
+                currency_id: 'BRL',
+            },
         ],
         back_urls: {
-            success: `${window.location.origin}/`,
+            success: `${window.location.origin}/sucess`,
             pending: `${window.location.origin}/`,
             failure: `${window.location.origin}/`,
-        },
-        payer: {
-            email: 'teste@exemple.com',
         },
     }
 

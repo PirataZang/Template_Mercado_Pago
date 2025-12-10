@@ -3,7 +3,8 @@ import { MercadoPagoConfig, Preference } from 'mercadopago'
 const runtimeConfig = useRuntimeConfig()
 
 const client = new MercadoPagoConfig({
-    accessToken: 'APP_USR-4065671579552751-111311-0b96cbe0b9d7bae3ee41a44d4e5c85cd-2988184892', // Usando o token secreto
+    // accessToken: 'APP_USR-4065671579552751-111311-0b96cbe0b9d7bae3ee41a44d4e5c85cd-2988184892', // Usando o token teste
+    accessToken: runtimeConfig.MERCADO_PAGO_ACCESS_TOKEN,
 })
 
 export default defineEventHandler(async (event) => {
