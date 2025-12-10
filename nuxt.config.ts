@@ -9,4 +9,11 @@ export default defineNuxtConfig({
     vite: {
         plugins: [tailwindcss()],
     },
+    runtimeConfig: {
+        // MERCADO_PAGO_ACCESS_TOKEN: 'APP_USR-5946751472309474-111311-70c790bb511043dd6a42f647545d39d4-267525737',
+        MERCADO_PAGO_ACCESS_TOKEN: 'APP_USR-4065671579552751-111311-0b96cbe0b9d7bae3ee41a44d4e5c85cd-2988184892', // Esse é o Teste
+        public: {
+            NUXT_PUBLIC_MERCADO_PAGO_CLIENT: 'APP_USR-0fc3d37a-e179-40e1-add2-4eaf768a291d',
+        },
+    },
 })
