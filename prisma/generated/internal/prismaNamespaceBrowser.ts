@@ -52,6 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
+  Payment: 'Payment',
+  Order: 'Order',
   Post: 'Post'
 } as const
 
@@ -82,6 +84,35 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+export const PaymentScalarFieldEnum = {
+  id: 'id',
+  mpPaymentId: 'mpPaymentId',
+  status: 'status',
+  externalReference: 'externalReference',
+  statusDetail: 'statusDetail',
+  amount: 'amount',
+  paymentType: 'paymentType',
+  rawPayload: 'rawPayload',
+  attempts: 'attempts',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+} as const
+
+export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+export const OrderScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  paymentId: 'paymentId',
+  status: 'status',
+  createdAt: 'createdAt'
+} as const
+
+export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
 export const PostScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -101,6 +132,14 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const NullableJsonNullValueInput = {
+  DbNull: 'DbNull',
+  JsonNull: 'JsonNull'
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -115,4 +154,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: 'DbNull',
+  JsonNull: 'JsonNull',
+  AnyNull: 'AnyNull'
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

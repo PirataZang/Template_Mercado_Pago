@@ -11,12 +11,41 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
   name     String?
   password String?
-  token    String? @unique
+  token    String?   @unique
   posts    Post[]
+  payments Payment[]
+  orders   Order[]
+}
+
+model Payment {
+  id                Int      @id @default(autoincrement())
+  mpPaymentId       BigInt   @unique
+  status            String?
+  externalReference String?
+  statusDetail      String?
+  amount            Decimal? @db.Decimal(10, 2)
+  paymentType       String?
+  rawPayload        Json?
+  attempts          Int?     @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  userId            Int
+  user              User     @relation(fields: [userId], references: [id])
+  orders            Order[]
+}
+
+model Order {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  paymentId Int?
+  payment   Payment? @relation(fields: [paymentId], references: [id])
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
 }
 
 model Post {

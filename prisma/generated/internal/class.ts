@@ -17,10 +17,10 @@ import type * as Prisma from "./prismaNamespace.js"
 
 const config: runtime.GetPrismaClientConfig = {
   "previewFeatures": [],
-  "clientVersion": "7.0.1",
-  "engineVersion": "f09f2815f091dbba658cdcd2264306d88bb5bda6",
+  "clientVersion": "7.1.0",
+  "engineVersion": "ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba",
   "activeProvider": "postgresql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"./generated\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id       Int     @id @default(autoincrement())\n  email    String  @unique\n  name     String?\n  password String?\n  token    String? @unique\n  posts    Post[]\n}\n\nmodel Post {\n  id        Int     @id @default(autoincrement())\n  title     String\n  content   String?\n  published Boolean @default(false)\n  author    User    @relation(fields: [authorId], references: [id])\n  authorId  Int\n}\n",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"./generated\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id       Int       @id @default(autoincrement())\n  email    String    @unique\n  name     String?\n  password String?\n  token    String?   @unique\n  posts    Post[]\n  payments Payment[]\n  orders   Order[]\n}\n\nmodel Payment {\n  id                Int      @id @default(autoincrement())\n  mpPaymentId       BigInt   @unique\n  status            String?\n  externalReference String?\n  statusDetail      String?\n  amount            Decimal? @db.Decimal(10, 2)\n  paymentType       String?\n  rawPayload        Json?\n  attempts          Int?     @default(0)\n  createdAt         DateTime @default(now())\n  updatedAt         DateTime @updatedAt\n  userId            Int\n  user              User     @relation(fields: [userId], references: [id])\n  orders            Order[]\n}\n\nmodel Order {\n  id        Int      @id @default(autoincrement())\n  userId    Int\n  user      User     @relation(fields: [userId], references: [id])\n  paymentId Int?\n  payment   Payment? @relation(fields: [paymentId], references: [id])\n  status    String   @default(\"pending\")\n  createdAt DateTime @default(now())\n}\n\nmodel Post {\n  id        Int     @id @default(autoincrement())\n  title     String\n  content   String?\n  published Boolean @default(false)\n  author    User    @relation(fields: [authorId], references: [id])\n  authorId  Int\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"posts\",\"kind\":\"object\",\"type\":\"Post\",\"relationName\":\"PostToUser\"}],\"dbName\":null},\"Post\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"published\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"author\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"PostToUser\"},{\"name\":\"authorId\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"posts\",\"kind\":\"object\",\"type\":\"Post\",\"relationName\":\"PostToUser\"},{\"name\":\"payments\",\"kind\":\"object\",\"type\":\"Payment\",\"relationName\":\"PaymentToUser\"},{\"name\":\"orders\",\"kind\":\"object\",\"type\":\"Order\",\"relationName\":\"OrderToUser\"}],\"dbName\":null},\"Payment\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"mpPaymentId\",\"kind\":\"scalar\",\"type\":\"BigInt\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"externalReference\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"statusDetail\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"amount\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"paymentType\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"rawPayload\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"attempts\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"PaymentToUser\"},{\"name\":\"orders\",\"kind\":\"object\",\"type\":\"Order\",\"relationName\":\"OrderToPayment\"}],\"dbName\":null},\"Order\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"OrderToUser\"},{\"name\":\"paymentId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"payment\",\"kind\":\"object\",\"type\":\"Payment\",\"relationName\":\"OrderToPayment\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Post\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"published\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"author\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"PostToUser\"},{\"name\":\"authorId\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -62,7 +62,7 @@ export interface PrismaClientConstructor {
    * const users = await prisma.user.findMany()
    * ```
    * 
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+   * Read more in our [docs](https://pris.ly/d/client).
    */
 
   new <
@@ -84,7 +84,7 @@ export interface PrismaClientConstructor {
  * const users = await prisma.user.findMany()
  * ```
  * 
- * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+ * Read more in our [docs](https://pris.ly/d/client).
  */
 
 export interface PrismaClient<
@@ -113,7 +113,7 @@ export interface PrismaClient<
    * const result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
 
@@ -125,7 +125,7 @@ export interface PrismaClient<
    * const result = await prisma.$executeRawUnsafe('UPDATE User SET cool = $1 WHERE email = $2 ;', true, 'user@email.com')
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
 
@@ -136,7 +136,7 @@ export interface PrismaClient<
    * const result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
 
@@ -148,7 +148,7 @@ export interface PrismaClient<
    * const result = await prisma.$queryRawUnsafe('SELECT * FROM User WHERE id = $1 OR email = $2;', 1, 'user@email.com')
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
 
@@ -183,6 +183,26 @@ export interface PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.payment`: Exposes CRUD operations for the **Payment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Payments
+    * const payments = await prisma.payment.findMany()
+    * ```
+    */
+  get payment(): Prisma.PaymentDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.order`: Exposes CRUD operations for the **Order** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Orders
+    * const orders = await prisma.order.findMany()
+    * ```
+    */
+  get order(): Prisma.OrderDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
    * `prisma.post`: Exposes CRUD operations for the **Post** model.

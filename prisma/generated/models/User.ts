@@ -217,6 +217,8 @@ export type UserWhereInput = {
   password?: Prisma.StringNullableFilter<"User"> | string | null
   token?: Prisma.StringNullableFilter<"User"> | string | null
   posts?: Prisma.PostListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -226,6 +228,8 @@ export type UserOrderByWithRelationInput = {
   password?: Prisma.SortOrderInput | Prisma.SortOrder
   token?: Prisma.SortOrderInput | Prisma.SortOrder
   posts?: Prisma.PostOrderByRelationAggregateInput
+  payments?: Prisma.PaymentOrderByRelationAggregateInput
+  orders?: Prisma.OrderOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -238,6 +242,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringNullableFilter<"User"> | string | null
   password?: Prisma.StringNullableFilter<"User"> | string | null
   posts?: Prisma.PostListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
 }, "id" | "email" | "token">
 
 export type UserOrderByWithAggregationInput = {
@@ -270,6 +276,8 @@ export type UserCreateInput = {
   password?: string | null
   token?: string | null
   posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -279,6 +287,8 @@ export type UserUncheckedCreateInput = {
   password?: string | null
   token?: string | null
   posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -287,6 +297,8 @@ export type UserUpdateInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -296,6 +308,8 @@ export type UserUncheckedUpdateInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -374,6 +388,34 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type UserCreateNestedOneWithoutPaymentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPaymentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentsInput
+  upsert?: Prisma.UserUpsertWithoutPaymentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPaymentsInput, Prisma.UserUpdateWithoutPaymentsInput>, Prisma.UserUncheckedUpdateWithoutPaymentsInput>
+}
+
+export type UserCreateNestedOneWithoutOrdersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrdersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrdersInput
+  upsert?: Prisma.UserUpsertWithoutOrdersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOrdersInput, Prisma.UserUpdateWithoutOrdersInput>, Prisma.UserUncheckedUpdateWithoutOrdersInput>
+}
+
 export type UserCreateNestedOneWithoutPostsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutPostsInput, Prisma.UserUncheckedCreateWithoutPostsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutPostsInput
@@ -388,11 +430,121 @@ export type UserUpdateOneRequiredWithoutPostsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPostsInput, Prisma.UserUpdateWithoutPostsInput>, Prisma.UserUncheckedUpdateWithoutPostsInput>
 }
 
+export type UserCreateWithoutPaymentsInput = {
+  email: string
+  name?: string | null
+  password?: string | null
+  token?: string | null
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPaymentsInput = {
+  id?: number
+  email: string
+  name?: string | null
+  password?: string | null
+  token?: string | null
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPaymentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+}
+
+export type UserUpsertWithoutPaymentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPaymentsInput, Prisma.UserUncheckedUpdateWithoutPaymentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPaymentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPaymentsInput, Prisma.UserUncheckedUpdateWithoutPaymentsInput>
+}
+
+export type UserUpdateWithoutPaymentsInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPaymentsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutOrdersInput = {
+  email: string
+  name?: string | null
+  password?: string | null
+  token?: string | null
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutOrdersInput = {
+  id?: number
+  email: string
+  name?: string | null
+  password?: string | null
+  token?: string | null
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutOrdersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
+}
+
+export type UserUpsertWithoutOrdersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOrdersInput, Prisma.UserUncheckedUpdateWithoutOrdersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutOrdersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOrdersInput, Prisma.UserUncheckedUpdateWithoutOrdersInput>
+}
+
+export type UserUpdateWithoutOrdersInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutOrdersInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+}
+
 export type UserCreateWithoutPostsInput = {
   email: string
   name?: string | null
   password?: string | null
   token?: string | null
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPostsInput = {
@@ -401,6 +553,8 @@ export type UserUncheckedCreateWithoutPostsInput = {
   name?: string | null
   password?: string | null
   token?: string | null
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPostsInput = {
@@ -424,6 +578,8 @@ export type UserUpdateWithoutPostsInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPostsInput = {
@@ -432,6 +588,8 @@ export type UserUncheckedUpdateWithoutPostsInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -441,10 +599,14 @@ export type UserUncheckedUpdateWithoutPostsInput = {
 
 export type UserCountOutputType = {
   posts: number
+  payments: number
+  orders: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   posts?: boolean | UserCountOutputTypeCountPostsArgs
+  payments?: boolean | UserCountOutputTypeCountPaymentsArgs
+  orders?: boolean | UserCountOutputTypeCountOrdersArgs
 }
 
 /**
@@ -464,6 +626,20 @@ export type UserCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Exte
   where?: Prisma.PostWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -472,6 +648,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   password?: boolean
   token?: boolean
   posts?: boolean | Prisma.User$postsArgs<ExtArgs>
+  payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
+  orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -502,6 +680,8 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "password" | "token", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   posts?: boolean | Prisma.User$postsArgs<ExtArgs>
+  payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
+  orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -511,6 +691,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     posts: Prisma.$PostPayload<ExtArgs>[]
+    payments: Prisma.$PaymentPayload<ExtArgs>[]
+    orders: Prisma.$OrderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -913,6 +1095,8 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   posts<T extends Prisma.User$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  payments<T extends Prisma.User$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orders<T extends Prisma.User$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1356,6 +1540,54 @@ export type User$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
   take?: number
   skip?: number
   distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[]
+}
+
+/**
+ * User.payments
+ */
+export type User$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
+}
+
+/**
+ * User.orders
+ */
+export type User$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Order
+   */
+  select?: Prisma.OrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Order
+   */
+  omit?: Prisma.OrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderInclude<ExtArgs> | null
+  where?: Prisma.OrderWhereInput
+  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
+  cursor?: Prisma.OrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
 }
 
 /**

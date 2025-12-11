@@ -74,6 +74,8 @@ const processPayment = async () => {
     statusMessage.value = 'Gerando link de pagamento no Mercado Pago...'
     statusType.value = 'info'
 
+    const { data: user } = await useFetch('/api/me')
+
     // Estrutura do body ajustada para o formato "Preference"
     const bodyReq = {
         items: [
@@ -83,13 +85,8 @@ const processPayment = async () => {
                 unit_price: paymentData.amount,
                 currency_id: 'BRL',
             },
-            {
-                title: 'Teste dois prod',
-                quantity: 1,
-                unit_price: 1,
-                currency_id: 'BRL',
-            },
         ],
+        external_reference: user.value?.id,
         back_urls: {
             success: `${window.location.origin}/sucess`,
             pending: `${window.location.origin}/`,
