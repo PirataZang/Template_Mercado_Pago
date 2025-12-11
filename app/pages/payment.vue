@@ -97,6 +97,7 @@ const processPayment = async () => {
     try {
         const { data, error } = await useFetch('/api/mercadopago/mercadopago', {
             method: 'POST',
+            query: { userId: user.value?.id },
             body: bodyReq,
         })
 

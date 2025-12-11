@@ -1,15 +1,24 @@
 import { MercadoPagoConfig, Preference } from 'mercadopago'
+import { prisma } from '~/lib/prisma'
 
 const runtimeConfig = useRuntimeConfig()
 
 const client = new MercadoPagoConfig({
-    // accessToken: 'APP_USR-4065671579552751-111311-0b96cbe0b9d7bae3ee41a44d4e5c85cd-2988184892', // Usando o token teste
     accessToken: runtimeConfig.MERCADO_PAGO_ACCESS_TOKEN,
 })
 
 export default defineEventHandler(async (event) => {
     const preference = new Preference(client)
     const body = await readBody(event)
+    const query = getQuery(event)
+    const userId = Number(query.userId)
+
+    const order = await prisma.order.create({
+        data: {
+            userId,
+            status: 'pending',
+        },
+    })
 
     try {
         const preferenceResult = await preference.create({
