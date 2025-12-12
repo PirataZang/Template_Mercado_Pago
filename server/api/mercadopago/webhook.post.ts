@@ -71,11 +71,16 @@ export default defineEventHandler(async (event: H3Event) => {
     // -------------------------------------
     // WORKFLOW QUANDO APROVA
     // -------------------------------------
+
+    const paymentBD = await prisma.payment.findUnique({
+        where: { mpPaymentId: payment.id },
+    })
+
     if (payment.status === 'approved') {
         console.log('🔥 PAGAMENTO APROVADO para userId:', payment.external_reference)
-        await prisma.order.updateMany({
-            where: { paymentId: payment.id },
-            data: { status: 'paid' },
+        const order = await prisma.order.updateMany({
+            where: { userId: paymentBD?.userId, status: 'pending' },
+            data: { status: 'paid', paymentId: paymentBD?.id },
         })
     }
 

@@ -88,9 +88,13 @@ const processPayment = async () => {
         ],
         external_reference: user.value?.id,
         back_urls: {
-            success: `${window.location.origin}/sucess`,
+            success: `${window.location.origin}/payment`,
             pending: `${window.location.origin}/`,
             failure: `${window.location.origin}/`,
+        },
+        payer: {
+            email: user.value?.email,
+            name: user.value?.name,
         },
     }
 

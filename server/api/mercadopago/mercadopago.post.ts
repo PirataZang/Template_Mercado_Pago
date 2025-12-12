@@ -25,6 +25,8 @@ export default defineEventHandler(async (event) => {
             body: body as any, // Recebe a estrutura de Item/Back URLs do frontend
         })
 
+        const test = 1
+
         return preferenceResult // Retorna o objeto Preference, incluindo 'init_point'
     } catch (error) {
         // ... (Tratamento de erro) ...
