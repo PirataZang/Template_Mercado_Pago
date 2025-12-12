@@ -21,7 +21,8 @@
     "tailwindcss": "^4.1.17",
     "tsx": "^4.20.6",
     "vue": "^3.5.25",
-    "vue-router": "^4.6.3"
+    "vue-router": "^4.6.3",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@types/pg": "^8.15.6",
