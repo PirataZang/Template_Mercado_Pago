@@ -5,14 +5,32 @@
     </div>
 
     <UButton @click="login">Logar</UButton>
+
+    <div class="mt-8">
+        <UButton @click="handleSendMail" :loading="loading">Send Test Email</UButton>
+        <p v-if="error" class="text-red-500 mt-2">Error: {{ error.message }}</p>
+        <p v-if="data" class="text-green-500 mt-2">Email sent successfully! Message ID: {{ data.messageId }}</p>
+    </div>
 </template>
 
 <script lang="ts" setup>
-import { authClient, signIn } from '~/lib/auth-client'
+import { authClient } from '~/lib/auth-client'
+import { useMail } from '~/composables/useMail'
+
+const { sendMail, loading, error, data } = useMail()
 
 const login = () => {
     authClient.signIn.social({
         provider: 'google',
+    })
+}
+
+const handleSendMail = async () => {
+    await sendMail({
+        to: 'igorfronza19@gmail.com',
+        subject: 'Test Email',
+        text: 'This is a test email from the Nuxt application.',
+        html: '<h1>Test Email</h1><p>This is a test email from the Nuxt application.</p>',
     })
 }
 </script>

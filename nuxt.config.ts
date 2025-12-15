@@ -10,6 +10,8 @@ export default defineNuxtConfig({
         plugins: [tailwindcss()],
     },
     runtimeConfig: {
+        GMAIL_USER: process.env.GMAIL_USER,
+        GMAIL_APP_PASSWORD: process.env.GMAIL_APP_PASSWORD,
         MERCADO_PAGO_ACCESS_TOKEN: 'APP_USR-5946751472309474-111311-70c790bb511043dd6a42f647545d39d4-267525737',
         MP_WEBHOOK_ACCESS: 'fa3fa9fe0a88727d0f7d757d13608b0f2890cd5a8c6d7d1ac3c2b1b600ff43ce',
         public: {
