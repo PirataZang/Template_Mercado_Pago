@@ -59,3 +59,8 @@ export type Order = Prisma.OrderModel
  * 
  */
 export type Post = Prisma.PostModel
+/**
+ * Model Clients
+ * 
+ */
+export type Clients = Prisma.ClientsModel

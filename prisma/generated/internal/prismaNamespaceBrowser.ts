@@ -54,7 +54,8 @@ export const ModelName = {
   User: 'User',
   Payment: 'Payment',
   Order: 'Order',
-  Post: 'Post'
+  Post: 'Post',
+  Clients: 'Clients'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -122,6 +123,17 @@ export const PostScalarFieldEnum = {
 } as const
 
 export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
+
+
+export const ClientsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  token: 'token'
+} as const
+
+export type ClientsScalarFieldEnum = (typeof ClientsScalarFieldEnum)[keyof typeof ClientsScalarFieldEnum]
 
 
 export const SortOrder = {

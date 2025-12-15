@@ -387,7 +387,8 @@ export const ModelName = {
   User: 'User',
   Payment: 'Payment',
   Order: 'Order',
-  Post: 'Post'
+  Post: 'Post',
+  Clients: 'Clients'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -403,7 +404,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "payment" | "order" | "post"
+    modelProps: "user" | "payment" | "order" | "post" | "clients"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -703,6 +704,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Clients: {
+      payload: Prisma.$ClientsPayload<ExtArgs>
+      fields: Prisma.ClientsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ClientsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ClientsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientsPayload>
+        }
+        findFirst: {
+          args: Prisma.ClientsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ClientsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientsPayload>
+        }
+        findMany: {
+          args: Prisma.ClientsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientsPayload>[]
+        }
+        create: {
+          args: Prisma.ClientsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientsPayload>
+        }
+        createMany: {
+          args: Prisma.ClientsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ClientsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientsPayload>[]
+        }
+        delete: {
+          args: Prisma.ClientsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientsPayload>
+        }
+        update: {
+          args: Prisma.ClientsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientsPayload>
+        }
+        deleteMany: {
+          args: Prisma.ClientsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ClientsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ClientsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientsPayload>[]
+        }
+        upsert: {
+          args: Prisma.ClientsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientsPayload>
+        }
+        aggregate: {
+          args: Prisma.ClientsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateClients>
+        }
+        groupBy: {
+          args: Prisma.ClientsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClientsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ClientsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClientsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -791,6 +866,17 @@ export const PostScalarFieldEnum = {
 } as const
 
 export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
+
+
+export const ClientsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  token: 'token'
+} as const
+
+export type ClientsScalarFieldEnum = (typeof ClientsScalarFieldEnum)[keyof typeof ClientsScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1043,6 +1129,7 @@ export type GlobalOmitConfig = {
   payment?: Prisma.PaymentOmit
   order?: Prisma.OrderOmit
   post?: Prisma.PostOmit
+  clients?: Prisma.ClientsOmit
 }
 
 /* Types for Logging */
