@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- Toggle button -->
-        <button @click="toggle" :aria-expanded="isOpen.toString()" aria-label="Abrir menu" class="fixed top-4 left-4 z-50 bg-purple-600 text-white p-2.5 rounded-lg shadow-md hover:opacity-95 focus:outline-none">
+        <button @click="toggle" :aria-expanded="isOpen.toString()" aria-label="Abrir menu" class="z-50 bg-purple-600 text-white p-2.5 rounded-lg shadow-md hover:opacity-95 focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M3 5h14a1 1 0 010 2H3a1 1 0 110-2zm0 4h14a1 1 0 010 2H3a1 1 0 110-2zm0 4h14a1 1 0 010 2H3a1 1 0 110-2z" clip-rule="evenodd" />
             </svg>

@@ -10,13 +10,14 @@ export const useMail = () => {
         data.value = null
 
         try {
-            const response = await $fetch('/api/send-email', {
+            const { data: response } = await useFetch('/api/send-email', {
                 method: 'POST',
                 body: options,
             })
 
+            debugger
+
             // Armazena a resposta de sucesso
-            data.value = response as { messageId: string }
             return { success: true, data: response }
         } catch (err: any) {
             // Define o erro no formato que seu template espera (.message)
