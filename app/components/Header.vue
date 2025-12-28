@@ -13,7 +13,6 @@
                 <!-- Right Side - Placeholder for user icon, etc. -->
                 <div class="w-10"></div>
             </div>
-            <Button to="/aaaaa" label="Botão Vermelho" color="#d9534f" />
         </div>
     </header>
 </template>

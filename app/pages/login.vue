@@ -38,6 +38,11 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
+
+definePageMeta({
+    layout: 'clean',
+})
+
 // Importa o yup para a definição do schema de validação
 import * as yup from 'yup'
 

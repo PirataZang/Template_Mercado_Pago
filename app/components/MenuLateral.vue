@@ -16,25 +16,12 @@
                 <aside class="relative z-50 w-80 max-w-[92vw] h-full bg-gradient-to-b from-white to-purple-50 rounded-r-2xl p-5 shadow-2xl flex flex-col" role="dialog" aria-modal="true">
                     <div class="flex items-center justify-between mb-3">
                         <h2 class="text-purple-800 text-lg font-semibold">Menu</h2>
-                        <UButton color="neutral" variant="ghost" @click="close" aria-label="Fechar menu">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-700" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414L11.414 10l2.293 2.293a1 1 0 01-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
-                        </UButton>
+                        <Button @click="close" label="X" class="w-auto h-[35px]" color="#9857ba" />
                     </div>
 
                     <nav class="flex flex-col gap-[5px]" aria-label="Menu principal">
-                        <div v-for="(item, i) in itemsList" :key="i" class="flex items-center rounded-lg hover:bg-purple-100 px-2 py-1">
-                            <!-- espaço para ícone -->
-                            <div class="w-9 h-9 mr-3 flex items-center justify-center text-purple-600">
-                                <div class="w-5 h-5 bg-purple-100 rounded-full"></div>
-                            </div>
-
-                            <div class="flex-1">
-                                <NuxtLink :to="item?.to" class="block w-full px-4 py-3 text-gray-700 rounded-lg transition-colors duration-200 ease-in-out text-left">
-                                    {{ item?.label }}
-                                </NuxtLink>
-                            </div>
+                        <div v-for="(item, i) in itemsList" :key="i">
+                            <Button :to="item?.to" :label="item?.label" class="w-full h-[40px] bg-purple-400 hover:bg-purple-600" />
                         </div>
                     </nav>
 
@@ -49,6 +36,7 @@
 
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
+import Button from './Utils/Button.vue'
 
 const itemsList = [
     {
