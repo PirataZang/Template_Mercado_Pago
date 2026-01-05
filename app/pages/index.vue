@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Button label="Teste" href="www.google.com" />
+        <Button label="Teste" href="https://www.google.com/?hl=pt_BR" />
     </div>
 </template>
 

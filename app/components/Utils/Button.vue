@@ -3,7 +3,7 @@
         <span v-html="label"></span>
     </NuxtLink>
 
-    <a v-else-if="href && !to" href="href" target="_blank" :class="buttonClasses" :style="buttonStyle" v-bind="$attrs">
+    <a v-else-if="href && !to" :href="href" target="_blank" :class="buttonClasses" :style="buttonStyle" v-bind="$attrs">
         <span v-html="label"></span>
     </a>
 
