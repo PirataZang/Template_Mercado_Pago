@@ -25,7 +25,7 @@ model Payment {
   id                Int      @id @default(autoincrement())
   mpPaymentId       BigInt   @unique
   status            String?
-  externalReference String?
+  externalReference String   @unique
   statusDetail      String?
   amount            Decimal? @db.Decimal(10, 2)
   paymentType       String?
@@ -34,18 +34,20 @@ model Payment {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
   userId            Int
-  user              User     @relation(fields: [userId], references: [id])
-  orders            Order[]
+
+  user  User  @relation(fields: [userId], references: [id])
+  order Order @relation(fields: [externalReference], references: [reference])
 }
 
 model Order {
   id        Int      @id @default(autoincrement())
   userId    Int
-  user      User     @relation(fields: [userId], references: [id])
-  paymentId Int?
-  payment   Payment? @relation(fields: [paymentId], references: [id])
   status    String   @default("pending")
+  reference String   @unique
   createdAt DateTime @default(now())
+
+  payment Payment?
+  user    User     @relation(fields: [userId], references: [id])
 }
 
 model Post {
@@ -58,9 +60,9 @@ model Post {
 }
 
 model Clients {
-  id    Int    @id @default(autoincrement())
-  name  String
-  email String
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String
   password String?
-  token String? @unique
+  token    String? @unique
 }

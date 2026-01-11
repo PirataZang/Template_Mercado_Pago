@@ -11,12 +11,11 @@ export default defineEventHandler(async (event) => {
     const preference = new Preference(client)
     const body = await readBody(event)
     const query = getQuery(event)
-    const userId = Number(query.userId)
 
     const order = await prisma.order.create({
         data: {
-            userId,
             status: 'pending',
+            reference: body.external_reference,
         },
     })
 

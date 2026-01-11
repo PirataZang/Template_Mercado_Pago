@@ -54,7 +54,6 @@ export default defineEventHandler(async (event: H3Event) => {
             paymentType: payment.payment_method_id,
             rawPayload: payment,
             attempts: { increment: 1 },
-            userId: Number(payment.external_reference),
         },
         create: {
             mpPaymentId: BigInt(payment.id),
@@ -64,7 +63,6 @@ export default defineEventHandler(async (event: H3Event) => {
             externalReference: payment.external_reference,
             paymentType: payment.payment_method_id,
             rawPayload: payment,
-            userId: Number(payment.external_reference),
         },
     })
 
@@ -77,10 +75,10 @@ export default defineEventHandler(async (event: H3Event) => {
     })
 
     if (payment.status === 'approved') {
-        console.log('🔥 PAGAMENTO APROVADO para userId:', payment.external_reference)
+        console.log('🔥 PAGAMENTO APROVADO', payment.external_reference)
         const order = await prisma.order.updateMany({
-            where: { userId: paymentBD?.userId, status: 'pending' },
-            data: { status: 'paid', paymentId: paymentBD?.id },
+            where: { reference: payment.external_reference, status: 'pending' },
+            data: { status: 'paid' },
         })
     }
 

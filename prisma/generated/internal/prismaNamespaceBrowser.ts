@@ -106,9 +106,10 @@ export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeo
 export const OrderScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  paymentId: 'paymentId',
   status: 'status',
-  createdAt: 'createdAt'
+  reference: 'reference',
+  createdAt: 'createdAt',
+  paymentId: 'paymentId'
 } as const
 
 export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
