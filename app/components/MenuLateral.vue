@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- Toggle button -->
-        <button @click="toggle" :aria-expanded="isOpen.toString()" aria-label="Abrir menu" class="z-50 bg-purple-600 text-white p-2.5 rounded-lg shadow-md hover:opacity-95 focus:outline-none">
+        <button @click="toggle" :aria-expanded="isOpen.toString()" aria-label="Abrir menu" class="z-50 bg-[var(--menu-button)] text-white p-2.5 rounded-lg shadow-md hover:opacity-95 focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M3 5h14a1 1 0 010 2H3a1 1 0 110-2zm0 4h14a1 1 0 010 2H3a1 1 0 110-2zm0 4h14a1 1 0 010 2H3a1 1 0 110-2z" clip-rule="evenodd" />
             </svg>
@@ -13,21 +13,20 @@
                 <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" @click.self="close" aria-hidden="true"></div>
 
                 <!-- menu (left) -->
-                <aside class="relative z-50 w-80 max-w-[92vw] h-full bg-gradient-to-b from-white to-purple-50 rounded-r-2xl p-5 shadow-2xl flex flex-col" role="dialog" aria-modal="true">
+                <aside class="relative z-50 w-80 max-w-[92vw] h-full bg-gradient-to-b from-white to-gray-400 rounded-r-2xl p-5 shadow-2xl flex flex-col" role="dialog" aria-modal="true">
                     <div class="flex items-center justify-between mb-3">
-                        <h2 class="text-purple-800 text-lg font-semibold">Menu</h2>
-                        <Button @click="close" label="X" class="w-auto h-[35px]" color="#9857ba" />
+                        <h2 class="text-lg font-semibold">Menu</h2>
+                        <Button @click="close" label="X" class="w-auto h-[35px]" color="var(--menu-button)" />
                     </div>
 
                     <nav class="flex flex-col gap-[5px]" aria-label="Menu principal">
-                        <div v-for="(item, i) in itemsList" :key="i">
-                            <Button :to="item?.to" :label="item?.label" class="w-full h-[40px] bg-purple-400 hover:bg-purple-600" />
+                        <div v-for="(item, i) in itemsList" :key="i" class="flex flex-col gap-2 items-baseline">
+                            <NuxtLink :to="item?.to" class="text-[var(--menu-button)] font-medium flex-1 flex gap-4">
+                                <span v-html="item?.icon"></span>
+                                {{ item?.label }}
+                            </NuxtLink>
                         </div>
                     </nav>
-
-                    <div class="mt-auto pt-4 border-t border-purple-100">
-                        <NuxtButton color="neutral" variant="ghost" class="w-full justify-start">Sair</NuxtButton>
-                    </div>
                 </aside>
             </div>
         </transition>
@@ -42,7 +41,7 @@ const itemsList = [
     {
         to: '/',
         label: 'Início',
-        icon: 'home',
+        icon: '<i class="fa-solid fa-user"></i>',
     },
 ]
 
@@ -58,5 +57,5 @@ function close() {
 </script>
 
 <style>
-/* No additional CSS needed; Tailwind handles styles and transitions via classes */
+
 </style>

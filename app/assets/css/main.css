@@ -5,6 +5,10 @@
     --body-bg-color: white;
     --body-margin: 0;
     --body-padding: 0;
+
+    --menu-button: #333;
+    --menu-close-button: #6e6e6e;
+    --menu-buttons-bg: #323232;
 }
 
 body {
