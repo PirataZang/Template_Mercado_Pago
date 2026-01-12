@@ -61,6 +61,7 @@ const buttonClasses = computed(() => [
     'focus:outline-none',
     'focus:ring-2',
     'focus:ring-offset-2',
+    'min-h-[40px]', // Altura mínima para garantir visibilidade
     {
         // Classes de cor padrão se a prop 'color' não for fornecida
         'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500': !props.color,

@@ -39,6 +39,8 @@
 </template>
 
 <script setup lang="ts">
+import Button from '~/components/Utils/Button.vue'
+
 // ---- Estado ----
 const isOpen = ref(false)
 
@@ -61,8 +63,6 @@ interface Props {
     // Props para o Botão
     label?: string
     buttonSize?: string
-    buttonColor?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'neutral' | 'gray'
-    buttonVariant?: 'solid' | 'outline' | 'soft' | 'ghost' | 'link' | 'subtle'
 
     // Props para o Modal
     modalTitle?: string
@@ -76,8 +76,6 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
     // Padrões do Botão
     label: 'Abrir Modal',
-    buttonSize: 'fit',
-    buttonColor: 'neutral',
     buttonVariant: 'subtle',
 
     // Padrões do Modal
