@@ -39,6 +39,7 @@ export type UserMinAggregateOutputType = {
   email: string | null
   name: string | null
   password: string | null
+  avatar: string | null
   token: string | null
 }
 
@@ -47,6 +48,7 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   name: string | null
   password: string | null
+  avatar: string | null
   token: string | null
 }
 
@@ -55,6 +57,7 @@ export type UserCountAggregateOutputType = {
   email: number
   name: number
   password: number
+  avatar: number
   token: number
   _all: number
 }
@@ -73,6 +76,7 @@ export type UserMinAggregateInputType = {
   email?: true
   name?: true
   password?: true
+  avatar?: true
   token?: true
 }
 
@@ -81,6 +85,7 @@ export type UserMaxAggregateInputType = {
   email?: true
   name?: true
   password?: true
+  avatar?: true
   token?: true
 }
 
@@ -89,6 +94,7 @@ export type UserCountAggregateInputType = {
   email?: true
   name?: true
   password?: true
+  avatar?: true
   token?: true
   _all?: true
 }
@@ -184,6 +190,7 @@ export type UserGroupByOutputType = {
   email: string
   name: string | null
   password: string | null
+  avatar: string | null
   token: string | null
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
@@ -215,6 +222,7 @@ export type UserWhereInput = {
   email?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringNullableFilter<"User"> | string | null
   password?: Prisma.StringNullableFilter<"User"> | string | null
+  avatar?: Prisma.StringNullableFilter<"User"> | string | null
   token?: Prisma.StringNullableFilter<"User"> | string | null
   posts?: Prisma.PostListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
@@ -226,6 +234,7 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   token?: Prisma.SortOrderInput | Prisma.SortOrder
   posts?: Prisma.PostOrderByRelationAggregateInput
   payments?: Prisma.PaymentOrderByRelationAggregateInput
@@ -241,6 +250,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   name?: Prisma.StringNullableFilter<"User"> | string | null
   password?: Prisma.StringNullableFilter<"User"> | string | null
+  avatar?: Prisma.StringNullableFilter<"User"> | string | null
   posts?: Prisma.PostListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
   orders?: Prisma.OrderListRelationFilter
@@ -251,6 +261,7 @@ export type UserOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   token?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
@@ -267,6 +278,7 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   password?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  avatar?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   token?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
@@ -274,6 +286,7 @@ export type UserCreateInput = {
   email: string
   name?: string | null
   password?: string | null
+  avatar?: string | null
   token?: string | null
   posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
@@ -285,6 +298,7 @@ export type UserUncheckedCreateInput = {
   email: string
   name?: string | null
   password?: string | null
+  avatar?: string | null
   token?: string | null
   posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
@@ -295,6 +309,7 @@ export type UserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
@@ -306,6 +321,7 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
@@ -317,6 +333,7 @@ export type UserCreateManyInput = {
   email: string
   name?: string | null
   password?: string | null
+  avatar?: string | null
   token?: string | null
 }
 
@@ -324,6 +341,7 @@ export type UserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -332,6 +350,7 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -340,6 +359,7 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
   token?: Prisma.SortOrder
 }
 
@@ -352,6 +372,7 @@ export type UserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
   token?: Prisma.SortOrder
 }
 
@@ -360,6 +381,7 @@ export type UserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
   token?: Prisma.SortOrder
 }
 
@@ -434,6 +456,7 @@ export type UserCreateWithoutPaymentsInput = {
   email: string
   name?: string | null
   password?: string | null
+  avatar?: string | null
   token?: string | null
   posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
@@ -444,6 +467,7 @@ export type UserUncheckedCreateWithoutPaymentsInput = {
   email: string
   name?: string | null
   password?: string | null
+  avatar?: string | null
   token?: string | null
   posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
@@ -469,6 +493,7 @@ export type UserUpdateWithoutPaymentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
@@ -479,6 +504,7 @@ export type UserUncheckedUpdateWithoutPaymentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
@@ -488,6 +514,7 @@ export type UserCreateWithoutOrdersInput = {
   email: string
   name?: string | null
   password?: string | null
+  avatar?: string | null
   token?: string | null
   posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
@@ -498,6 +525,7 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   email: string
   name?: string | null
   password?: string | null
+  avatar?: string | null
   token?: string | null
   posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
@@ -523,6 +551,7 @@ export type UserUpdateWithoutOrdersInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
@@ -533,6 +562,7 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
@@ -542,6 +572,7 @@ export type UserCreateWithoutPostsInput = {
   email: string
   name?: string | null
   password?: string | null
+  avatar?: string | null
   token?: string | null
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
@@ -552,6 +583,7 @@ export type UserUncheckedCreateWithoutPostsInput = {
   email: string
   name?: string | null
   password?: string | null
+  avatar?: string | null
   token?: string | null
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
@@ -577,6 +609,7 @@ export type UserUpdateWithoutPostsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
@@ -587,6 +620,7 @@ export type UserUncheckedUpdateWithoutPostsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
@@ -646,6 +680,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   name?: boolean
   password?: boolean
+  avatar?: boolean
   token?: boolean
   posts?: boolean | Prisma.User$postsArgs<ExtArgs>
   payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
@@ -658,6 +693,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   name?: boolean
   password?: boolean
+  avatar?: boolean
   token?: boolean
 }, ExtArgs["result"]["user"]>
 
@@ -666,6 +702,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   name?: boolean
   password?: boolean
+  avatar?: boolean
   token?: boolean
 }, ExtArgs["result"]["user"]>
 
@@ -674,10 +711,11 @@ export type UserSelectScalar = {
   email?: boolean
   name?: boolean
   password?: boolean
+  avatar?: boolean
   token?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "password" | "token", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "password" | "avatar" | "token", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   posts?: boolean | Prisma.User$postsArgs<ExtArgs>
   payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
@@ -699,6 +737,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     email: string
     name: string | null
     password: string | null
+    avatar: string | null
     token: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
@@ -1130,6 +1169,7 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
+  readonly avatar: Prisma.FieldRef<"User", 'String'>
   readonly token: Prisma.FieldRef<"User", 'String'>
 }
     

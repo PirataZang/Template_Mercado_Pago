@@ -1,15 +1,16 @@
-import { ref } from 'vue'
 import type { User } from '~~/prisma/generated/client'
 
 export const useUser = () => {
-    const user = ref<User | null>(null)
+    const user = useState<User | null>('user', () => null)
+    const pending = useState<boolean>('user_pending', () => false)
 
-    const setUser = (newUser: User | null) => {
-        user.value = newUser
+    const clearUser = () => {
+        user.value = null
     }
 
     return {
         user,
-        setUser,
+        pending,
+        clearUser,
     }
 }

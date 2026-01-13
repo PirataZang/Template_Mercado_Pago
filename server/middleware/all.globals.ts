@@ -15,8 +15,14 @@ export default defineEventHandler(async (event) => {
     }
 
     const token = getCookie(event, 'auth-token')
+    const userCookie = getCookie(event, 'user')
+    const userEvent = userCookie ? JSON.parse(userCookie) : null
+    event.context.user = userEvent
 
-    if (!token) {
+
+    if (userEvent?.id) return
+
+    if (!token && !userEvent?.id) {
         throw createError({
             statusCode: 401,
             statusMessage: 'Não Autorizado',
@@ -38,5 +44,15 @@ export default defineEventHandler(async (event) => {
         })
     }
 
-    event.context.user = user
+    const userData = {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+    }
+
+    setCookie(event, 'user', JSON.stringify(userData), {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+    })
 })

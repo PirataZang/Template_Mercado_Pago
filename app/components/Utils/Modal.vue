@@ -41,8 +41,6 @@
 <script setup lang="ts">
 import Button from '~/components/Utils/Button.vue'
 
-// ---- Estado ----
-const isOpen = ref(false)
 
 // ---- Emits ----
 const emit = defineEmits(['open', 'close'])
@@ -63,9 +61,11 @@ interface Props {
     // Props para o Botão
     label?: string
     buttonSize?: string
+    buttonColor?: string
 
     // Props para o Modal
     modalTitle?: string
+    isOpen?: boolean
     backgroundColor?: string
     modalWidth?: string // 💡 NOVA PROP: Para largura do modal (ex: 'max-w-xl', 'w-[600px]')
     panelClass?: string // 💡 customClass RENOMEADO: Classe extra para o painel
@@ -77,6 +77,7 @@ const props = withDefaults(defineProps<Props>(), {
     // Padrões do Botão
     label: 'Abrir Modal',
     buttonVariant: 'subtle',
+    isOpen: false,
 
     // Padrões do Modal
     modalTitle: 'Janela Personalizada',
@@ -86,4 +87,7 @@ const props = withDefaults(defineProps<Props>(), {
     customWrapperClass: '',
     closeOnOutsideClick: true,
 })
+
+// ---- Estado ----
+const isOpen = ref(props?.isOpen)
 </script>

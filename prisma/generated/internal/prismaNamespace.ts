@@ -822,6 +822,7 @@ export const UserScalarFieldEnum = {
   email: 'email',
   name: 'name',
   password: 'password',
+  avatar: 'avatar',
   token: 'token'
 } as const
 
@@ -851,8 +852,7 @@ export const OrderScalarFieldEnum = {
   userId: 'userId',
   status: 'status',
   reference: 'reference',
-  createdAt: 'createdAt',
-  paymentId: 'paymentId'
+  createdAt: 'createdAt'
 } as const
 
 export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
