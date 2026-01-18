@@ -10,10 +10,11 @@ import Chart from 'chart.js/auto'
 
 interface Props {
     type: 'line' | 'bar' | 'doughnut' | 'pie'
-    labels: string[]
-    data: number[]
+    labels?: string[]
+    data?: any[]
     label: string
     height?: string
+    datasets?: any[] | null
     width?: string
     borderColor?: string
     backgroundColor?: string
@@ -36,7 +37,7 @@ onMounted(() => {
         type: props.type,
         data: {
             labels: props.labels,
-            datasets: [
+            datasets: props.datasets ?? [
                 {
                     label: props.label,
                     data: props.data,

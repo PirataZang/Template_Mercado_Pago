@@ -23,12 +23,12 @@
             <!-- Gráfico Pizza -->
             <div>
                 <h2 class="text-lg font-semibold mb-2">Distribuição de Categorias</h2>
-                <ChartBase height="450px" width="700px" type="pie" label="Percentual" :labels="['Eletrônicos', 'Roupas', 'Alimentos', 'Outros']" :data="[30, 25, 20, 25]" :backgroundColor="'rgba(255, 99, 132, 0.5)'" />
+                <ChartBase height="450px" width="700px" type="pie" label="Percentual" :labels="['Eletrônicos', 'Roupas', 'Alimentos', 'Outros']" :data="[30, 25, 20, 25]" border-color="rgba(112, 25, 25)" :backgroundColor="'rgba(255, 99, 132, 0.5)'" />
             </div>
             <!-- Gráfico Doughnut -->
             <div>
                 <h2 class="text-lg font-semibold mb-2">Taxa de Conversão</h2>
-                <ChartBase height="750px" type="doughnut" label="Conversão" :labels="['Conversão', 'Não Conversão']" :data="[65, 35]" />
+                <ChartBase height="750px" type="doughnut" label="Conversão" :datasets="dataSetPie" :labels="['Conversão', 'Não Conversão']" />
             </div>
         </div>
     </div>
@@ -38,4 +38,21 @@
 import TestModal from '~/components/TestModal.vue'
 import Button from '~/components/Utils/Button.vue'
 import ChartBase from '~/components/Charts/ChartBase.vue'
+
+const dataSetPie = [
+    {
+        label: 'Conversão',
+        data: [30],
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        borderWidth: 1,
+        borderColor: 'rgba(255, 99, 132, 1)',
+    },
+    {
+        label: 'Não Conversão',
+        data: [2],
+        backgroundColor: 'rgba(17, 207, 20)',
+        borderWidth: 1,
+        borderColor: 'rgba(25, 112, 26)',
+    },
+]
 </script>
