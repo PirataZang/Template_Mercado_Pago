@@ -9,7 +9,7 @@
                 </div>
             </template>
 
-            <UForm :state="state" :schema="schema" @submit="login" class="flex flex-col gap-4">
+            <UForm method="POST" :state="state" :schema="schema" @submit="login" class="flex flex-col gap-4">
                 <UFormField label="Email" name="email">
                     <UInput class="w-full" variant="soft" v-model="state.email" placeholder="seu.email@exemplo.com" icon="i-heroicons-envelope" size="lg" color="info" />
                 </UFormField>
