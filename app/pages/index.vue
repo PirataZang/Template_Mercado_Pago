@@ -7,26 +7,26 @@
 
         <div class="flex gap-2">
             <!-- Gráfico de Linha -->
-            <div>
+            <div class="flex-1">
                 <h2 class="text-lg font-semibold mb-2">Vendas por Mês</h2>
-                <ChartBase height="450px" width="700px" type="line" label="Vendas" :labels="['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun']" :data="[45, 67, 52, 78, 89, 64]" borderColor="rgb(59, 130, 246)" :backgroundColor="'rgba(59, 130, 246, 0.1)'" />
+                <ChartBase type="line" label="Vendas" :labels="['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun']" :data="[45, 67, 52, 78, 89, 64]" borderColor="rgb(59, 130, 246)" :backgroundColor="'rgba(59, 130, 246, 0.1)'" />
             </div>
 
             <!-- Gráfico de Barras -->
-            <div>
+            <div class="flex-1">
                 <h2 class="text-lg font-semibold mb-2">Produtos Mais Vendidos</h2>
-                <ChartBase height="450px" width="700px" type="bar" label="Quantidade" :labels="['Produto A', 'Produto B', 'Produto C', 'Produto D']" :data="[85, 72, 68, 90]" borderColor="rgb(34, 197, 94)" :backgroundColor="'rgba(34, 197, 94, 0.5)'" />
+                <ChartBase type="bar" label="Quantidade" :labels="['Produto A', 'Produto B', 'Produto C', 'Produto D']" :data="[85, 72, 68, 90]" borderColor="rgb(34, 197, 94)" :backgroundColor="'rgba(34, 197, 94, 0.5)'" />
             </div>
         </div>
 
         <div class="flex gap-2">
             <!-- Gráfico Pizza -->
-            <div>
+            <div class="flex-1">
                 <h2 class="text-lg font-semibold mb-2">Distribuição de Categorias</h2>
-                <ChartBase height="450px" width="700px" type="pie" label="Percentual" :labels="['Eletrônicos', 'Roupas', 'Alimentos', 'Outros']" :data="[30, 25, 20, 25]" border-color="rgba(112, 25, 25)" :backgroundColor="'rgba(255, 99, 132, 0.5)'" />
+                <ChartBase width="300px" type="pie" label="Percentual" :labels="['Eletrônicos', 'Roupas', 'Alimentos', 'Outros']" :data="[30, 25, 20, 25]" border-color="rgba(112, 25, 25)" :backgroundColor="'rgba(255, 99, 132, 0.5)'" />
             </div>
             <!-- Gráfico Doughnut -->
-            <div>
+            <div class="flex-1">
                 <h2 class="text-lg font-semibold mb-2">Taxa de Conversão</h2>
                 <ChartBase height="750px" type="doughnut" label="Conversão" :datasets="dataSetPie" :labels="['Conversão', 'Não Conversão']" />
             </div>

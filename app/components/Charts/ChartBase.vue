@@ -1,5 +1,5 @@
 <template>
-    <div :class="`h-[${props.height}] w-[${props.width}] rounded-2xl p-2 border border-gray-200 shadow-md flex items-center justify-center`">
+    <div class="rounded-2xl p-2 border border-gray-200 shadow-md flex items-center justify-center">
         <canvas ref="chartContainer"></canvas>
     </div>
 </template>
