@@ -19,6 +19,5 @@
 <script setup lang="ts">
 import MenuLateral from '~/components/MenuLateral.vue'
 const { fetchUser } = useUser()
-const user = await fetchUser()
-
+const user = JSON.parse(decodeURIComponent(getCookie('user-session') || '{}'))
 </script>

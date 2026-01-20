@@ -58,13 +58,13 @@ export default defineEventHandler(async (event) => {
         id: user.id,
         email: user.email,
         name: user.name,
-        avatar: user.avatar,
     }
 
     const stringifyUser = JSON.stringify(userData)
 
     setCookie(event, 'user-session', stringifyUser, {
-        httpOnly: true,
+        httpOnly: false,
+        sameSite: 'lax',
         path: '/',
     })
 
