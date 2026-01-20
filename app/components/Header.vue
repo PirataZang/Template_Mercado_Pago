@@ -8,10 +8,9 @@
                 <!-- Right Side - Placeholder for user icon, etc. -->
                 <div class="w-10"></div>
 
-                <!-- <div class="flex gap-2">
-                    <UAvatar :src="user?.avatar" :alt="user?.name" />
+                <div class="flex gap-2">
                     {{ user?.name ?? 'Usuário' }}
-                </div> -->
+                </div>
             </div>
         </div>
     </header>
@@ -19,5 +18,7 @@
 
 <script setup lang="ts">
 import MenuLateral from '~/components/MenuLateral.vue'
-import Button from './Utils/Button.vue'
+const { fetchUser } = useUser()
+const user = await fetchUser()
+
 </script>

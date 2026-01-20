@@ -1,16 +1,29 @@
-import type { User } from '~~/prisma/generated/client'
-
 export const useUser = () => {
-    const user = useState<User | null>('user', () => null)
-    const pending = useState<boolean>('user_pending', () => false)
+    const token = useCookie('auth-token')
+    const user = useState('user', () => null)
+
+    const fetchUser = async () => {
+        // Se já tem usuário em cache, não faz requisição
+        if (user.value) {
+            return user.value
+        }
+
+        const { data } = await useFetch('/api/user', {
+            method: 'POST',
+            body: { token: token.value },
+        })
+        return data.value
+    }
 
     const clearUser = () => {
         user.value = null
+        const userCookie = useCookie('user-session')
+        userCookie.value = null
     }
 
     return {
         user,
-        pending,
+        fetchUser,
         clearUser,
     }
 }

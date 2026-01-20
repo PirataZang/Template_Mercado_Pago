@@ -17,7 +17,7 @@ interface Props {
     datasets?: any[] | null
     width?: string
     borderColor?: string
-    backgroundColor?: string
+    backgroundColor?: string[] | string
 }
 
 const props = withDefaults(defineProps<Props>(), {

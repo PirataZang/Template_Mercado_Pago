@@ -44,13 +44,8 @@ export default defineEventHandler(async (event) => {
         id: user.id,
         email: user.email,
         name: user.name,
+        avatar: user.avatar,
     }
 
     event.context.user = userData
-
-    setCookie(event, 'user', JSON.stringify(userData), {
-        httpOnly: true,
-        sameSite: 'lax',
-        path: '/',
-    })
 })
