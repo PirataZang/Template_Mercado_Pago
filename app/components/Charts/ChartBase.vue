@@ -1,5 +1,5 @@
 <template>
-    <div class="rounded-2xl p-2 border border-gray-200 shadow-md flex items-center justify-center">
+    <div :class="`w-[${props.width}]`" class="rounded-2xl p-2 border border-gray-200 shadow-md flex items-center justify-center">
         <canvas ref="chartContainer"></canvas>
     </div>
 </template>
@@ -23,8 +23,6 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
     borderColor: 'rgb(75, 192, 192)',
     backgroundColor: 'rgba(75, 192, 192, 0.5)',
-    height: '500px',
-    width: '500px',
 })
 
 const chartContainer = ref<HTMLCanvasElement | null>(null)

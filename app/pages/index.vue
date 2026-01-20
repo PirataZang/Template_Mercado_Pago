@@ -22,14 +22,14 @@
 
         <div class="flex gap-2">
             <!-- Gráfico Pizza -->
-            <div class="flex-1">
+            <div class="">
                 <h2 class="text-lg font-semibold mb-2">Distribuição de Categorias</h2>
-                <ChartBase width="300px" type="pie" label="Percentual" :labels="['Eletrônicos', 'Roupas', 'Alimentos', 'Outros']" :data="[30, 25, 20, 25]" border-color="rgba(112, 25, 25)" :backgroundColor="'rgba(255, 99, 132, 0.5)'" />
+                <ChartBase width="350px" type="pie" label="Percentual" :labels="['Eletrônicos', 'Roupas', 'Alimentos', 'Outros']" :data="[30, 25, 20, 25]" border-color="white" :backgroundColor="['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)']" />
             </div>
             <!-- Gráfico Doughnut -->
-            <div class="flex-1">
+            <div class="">
                 <h2 class="text-lg font-semibold mb-2">Taxa de Conversão</h2>
-                <ChartBase height="750px" type="doughnut" label="Conversão" :datasets="dataSetPie" :labels="['Conversão', 'Não Conversão']" />
+                <ChartBase width="350px" type="doughnut" label="Conversão" :datasets="dataSetPie" :labels="['Conversão', 'Não Conversão']" />
             </div>
         </div>
     </div>
