@@ -3,6 +3,7 @@
         <div class="flex gap-2">
             <Button label="Teste" href="https://www.google.com/?hl=pt_BR" />
             <TestModal />
+            <Button label="Chamar API" @click="getMe" />
         </div>
 
         <div class="flex gap-2">
@@ -55,4 +56,16 @@ const dataSetPie = [
         borderColor: 'rgba(25, 112, 26)',
     },
 ]
+
+async function callApi() {
+    const { data: response } = await useFetch('/api/teste', {
+        method: 'POST',
+    })
+}
+
+async function getMe() {
+    const { data: response } = await useFetch('/api/me', {
+        method: 'GET',
+    })
+}
 </script>

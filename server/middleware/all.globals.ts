@@ -17,10 +17,6 @@ export default defineEventHandler(async (event) => {
     const token = getCookie(event, 'auth-token') || event.req.headers['authorization']?.replace('Bearer ', '')
     const userCookie = getCookie(event, 'user')
     const userEvent = userCookie ? JSON.parse(userCookie) : null
-    event.context.user = userEvent
-
-
-    if (userEvent?.id) return
 
     if (!token && !userEvent?.id) {
         throw createError({
@@ -49,6 +45,8 @@ export default defineEventHandler(async (event) => {
         email: user.email,
         name: user.name,
     }
+
+    event.context.user = userData
 
     setCookie(event, 'user', JSON.stringify(userData), {
         httpOnly: true,
