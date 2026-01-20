@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
         return
     }
 
-    const token = getCookie(event, 'auth-token')
+    const token = getCookie(event, 'auth-token') || event.req.headers['authorization']?.replace('Bearer ', '')
     const userCookie = getCookie(event, 'user')
     const userEvent = userCookie ? JSON.parse(userCookie) : null
     event.context.user = userEvent
