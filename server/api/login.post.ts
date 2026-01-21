@@ -1,5 +1,6 @@
 import crypto from 'crypto'
 import { prisma } from '@/lib/prisma'
+import { cacheManager } from '../utils/cache'
 
 export default defineEventHandler(async (event) => {
     const body = await readBody(event)
@@ -58,15 +59,10 @@ export default defineEventHandler(async (event) => {
         id: user.id,
         email: user.email,
         name: user.name,
+        avatar: user.avatar,
     }
 
-    const stringifyUser = JSON.stringify(userData)
-
-    setCookie(event, 'user-session', stringifyUser, {
-        httpOnly: false,
-        sameSite: 'lax',
-        path: '/',
-    })
-
+    // Salva dados do usuário em cache (TTL de 1 hora)
+    cacheManager.set(`user:${token}`, userData, 3600)
     return userData
 })

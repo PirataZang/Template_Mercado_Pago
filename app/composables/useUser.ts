@@ -1,24 +1,26 @@
 export const useUser = () => {
-    const token = useCookie('auth-token')
     const user = useState('user', () => null)
 
     const fetchUser = async () => {
-        // Se já tem usuário em cache, não faz requisição
+        // Se já tem usuário em cache local, não faz requisição
         if (user.value) {
             return user.value
         }
 
-        const { data } = await useFetch('/api/user', {
-            method: 'POST',
-            body: { token: token.value },
+        // Busca do cache do servidor via GET /api/me
+        const { data } = await useFetch('/api/me', {
+            method: 'GET',
         })
+
+        if (data.value) {
+            user.value = data.value
+        }
+
         return data.value
     }
 
     const clearUser = () => {
         user.value = null
-        const userCookie = useCookie('user-session')
-        userCookie.value = null
     }
 
     return {

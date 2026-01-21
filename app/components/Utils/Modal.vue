@@ -1,11 +1,11 @@
 <template>
     <div>
-        <Button :label="label" :color="buttonColor" :class="`w-[${buttonSize}]`" @click="openModal" />
+        <Button v-if="showButtonOpen" :label="label" :color="buttonColor" :class="`w-[${buttonSize}]`" @click="openModal" />
 
         <Transition enter-active-class="ease-out duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="ease-in duration-200" leave-from-class="opacity-100" leave-to-class="opacity-0">
-            <div v-if="isOpen" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm transition-opacity" aria-labelledby="modal-title" role="dialog" aria-modal="true" @click.self="closeOnOutsideClick && closeModal()">
+            <div v-if="isOpen || props.isOpen" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm transition-opacity" aria-labelledby="modal-title" role="dialog" aria-modal="true" @click.self="closeOnOutsideClick && closeModal()">
                 <Transition enter-active-class="ease-out duration-300 transform" enter-from-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" enter-to-class="opacity-100 translate-y-0 sm:scale-100" leave-active-class="ease-in duration-200 transform" leave-from-class="opacity-100 translate-y-0 sm:scale-100" leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                    <div v-if="isOpen" :class="['fixed inset-0 overflow-y-auto flex items-center justify-center p-4', customWrapperClass]">
+                    <div v-if="isOpen || props.isOpen" :class="['fixed inset-0 overflow-y-auto flex items-center justify-center p-4', customWrapperClass]">
                         <div
                             :class="[
                                 'rounded-xl shadow-2xl transition-all',
@@ -15,10 +15,10 @@
                             ]"
                         >
                             <div class="px-4 py-3 border-b border-gray-700/50 flex items-center justify-between">
-                                <h3 class="text-xl font-bold text-white">
+                                <h3 class="text-xl font-bold text-contrast">
                                     {{ modalTitle }}
                                 </h3>
-                                <UButton color="neutral" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="hover:bg-gray-700" @click="closeModal" />
+                                <Button class="text-sm px-1 py-1" color="#a60c0c" @click="closeModal" label="<i class='fa-solid fa-xmark'></i>"/>
                             </div>
 
                             <div class="p-4">
@@ -41,7 +41,6 @@
 <script setup lang="ts">
 import Button from '~/components/Utils/Button.vue'
 
-
 // ---- Emits ----
 const emit = defineEmits(['open', 'close'])
 
@@ -61,6 +60,7 @@ interface Props {
     // Props para o Botão
     label?: string
     buttonSize?: string
+    showButtonOpen?: boolean
     buttonColor?: string
 
     // Props para o Modal
@@ -78,6 +78,7 @@ const props = withDefaults(defineProps<Props>(), {
     label: 'Abrir Modal',
     buttonVariant: 'subtle',
     isOpen: false,
+    showButtonOpen: true,
 
     // Padrões do Modal
     modalTitle: 'Janela Personalizada',
