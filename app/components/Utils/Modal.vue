@@ -82,7 +82,7 @@ const props = withDefaults(defineProps<Props>(), {
 
     // Padrões do Modal
     modalTitle: 'Janela Personalizada',
-    backgroundColor: 'bg-gray-800', // Padrão: Cinza Escuro (chumbo)
+    backgroundColor: 'bg-white', // Padrão: Cinza Escuro (chumbo)
     modalWidth: 'w-[300px]', // 💡 Padrão de Largura
     panelClass: '',
     customWrapperClass: '',
