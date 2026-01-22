@@ -5,7 +5,8 @@ export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: { enabled: false },
     modules: ['@nuxt/ui'],
-    css: ['./app/assets/css/main.css', '@fortawesome/fontawesome-free/css/all.min.css'],
+    css: ['./app/assets/css/main.css', '@fortawesome/fontawesome-free/css/all.min.css', 'ag-grid-community/styles/ag-grid.css', 'ag-grid-community/styles/ag-theme-quartz.css'],
+
     vite: {
         plugins: [tailwindcss()],
     },

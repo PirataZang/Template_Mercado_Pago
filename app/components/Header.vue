@@ -29,6 +29,4 @@ const openedModal = ref(false)
 onNuxtReady(async () => {
     await fetchUser()
 })
-
-debugger
 </script>
